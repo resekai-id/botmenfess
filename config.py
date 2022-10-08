@@ -1,17 +1,17 @@
-NGROK_AUTH_TOKEN = ""
+NGROK_AUTH_TOKEN = "2FjOWrfaUy1iXjFhhBosLPbFOKW_5MsccNAXDRAKdLYZM3cEH"
 # copy the auth token from https://dashboard.ngrok.com/get-started/your-authtoken
 # you don't need to fill ngrok auth token for debugging on local
 
-CONSUMER_KEY = ""
-CONSUMER_SECRET = ""
-ACCESS_KEY = ""
-ACCESS_SECRET = ""
-ENV_NAME = ""
+CONSUMER_KEY = "WMKscjqBVKLrL2oLnHvsbGctd"
+CONSUMER_SECRET = "xzVm5A65jXMjXaerVGCAosYzywzOIYlVu7jDmegimAe4Jtv9CE"
+ACCESS_KEY = "1567637126568878080-lP6ShJ8euijBClTfRI5yDtBCUFYYQ6"
+ACCESS_SECRET = "pzJj0DDPLSmY5jvgahF3aMuPzTXfKGquRdNedc3tC619r"
+ENV_NAME = "arh"
 # create Account Activity API (AAPI) dev env on https://developer.twitter.com/en/account/environments
 # ENV_NAME is the same as Dev environment label
 # Check your AAPI subcription renewal date on https://developer.twitter.com/en/account/subscriptions
 
-Admin_id = [""] # list of str
+Admin_id = ["1446167755703525387","1567637126568878080"] # list of str
 # Admin id is like sender id. To check it, send a menfess from your admin account.
 # IF YOU WANT TO TEST THE CONFIG, REMEMBER THIS! USERS IN ADMIN_ID PASS ALL USER'S FILTERS, you should delete your id on Admin_id
 
@@ -69,12 +69,12 @@ Verify_beforeSentData = {
     'text'      : 'Baca dulu peraturan base di blabla. Kamu yakin mau mengirim menfess ini?',
     'options'   : [
         {
-            'label'         : 'ya',
+            'label'         : 'Iya',
             'description'   : 'melanjutkan untuk mengirim menfess', # max 72 chars (include space)
             'metadata'      : 'exec|self._verif_menfess("accept", sender_id)'
         },
         {
-            'label'         : 'tidak',
+            'label'         : 'Tidak',
             'description'   : 'membatalkan untuk mengirim menfess', # max 72 chars (include space)
             'metadata'      : 'exec|self._verif_menfess("reject", sender_id)'
         }
@@ -82,14 +82,14 @@ Verify_beforeSentData = {
 }
 # Please keep the metadata, Read metadata documentation at README.md
 
-Sender_requirements = False
+Sender_requirements = True
 # bool, True: sender should passes the following requirements:   (admin pass this filter)
-Only_followed = False
+Only_followed = True
 Notif_notFollowed = "Hmm, kamu belum difollow base ini. Jadi ga bisa ngirim menfess dehh :("
 # Minimum_followers and Minimum_day is (automatically) required when Sender_requirements is True.
 Minimum_followers = 0 # int
 # Minimum-account-created-at
-Minimum_day = 0 # e.g 100, it means sender account must be created at 100 days ago
+Minimum_day = 1 # e.g 100, it means sender account must be created at 100 days ago
 Notify_senderRequirements = f"Kamu harus punya {Minimum_followers} followers dan umur akun kamu harus \
 lebih dari {Minimum_day} hari biar bisa ngirim menfess :("
 
@@ -101,11 +101,11 @@ Private_mediaTweet = False
 # 4 or the space is not available, THE REST OF THE MEDIA WILL BE ATTACHED TO THE
 # SUBSEQUENT TWEETS IN SORTED ORDER.
 
-Watermark = False
+Watermark = True
 # bool, True: Add watermark text to menfess's photo
 Watermark_data = {
     'image'     : 'twitter_autobase/watermark/photo.png', # bool (True: default image, False: no image) or image file path (str) 
-    'text'      : 'lorem ipsum', # if you won't to add text, fill it with empty string ''
+    'text'      : 'ARH', # if you won't to add text, fill it with empty string ''
     'font'      : 'twitter_autobase/watermark/FreeMono.ttf', # font file path
     'textColor' : (100,0,0,1), # RGBA
     'textStroke': (0,225,225,1), # RGBA
@@ -129,7 +129,7 @@ Off_scheduleData = {
 Off_scheduleMsg = f"Automenfess dimatikan setiap pukul {Off_scheduleData['start'][0]}:{Off_scheduleData['start'][1]} \
 sampai dengan pukul {Off_scheduleData['end'][0]}:{Off_scheduleData['end'][1]}"
 
-Trigger_word = ["fess!", "blablabla!"]
+Trigger_word = ["fess!", "blablabla!", "🌟"]
 Notify_wrongTrigger = {
     'user'      : True, # send notif to user
     'admin'     : False, # send wrong trigger menfess to admin
