@@ -1,4 +1,4 @@
-NGROK_AUTH_TOKEN = "2FjOWrfaUy1iXjFhhBosLPbFOKW_5MsccNAXDRAKdLYZM3cEH"
+NGROK_AUTH_TOKEN = ""
 # copy the auth token from https://dashboard.ngrok.com/get-started/your-authtoken
 # you don't need to fill ngrok auth token for debugging on local
 
