@@ -11,7 +11,7 @@ ENV_NAME = "arh"
 # ENV_NAME is the same as Dev environment label
 # Check your AAPI subcription renewal date on https://developer.twitter.com/en/account/subscriptions
 
-Admin_id = ["1446167755703525387","1567637126568878080"] # list of str
+Admin_id = ["1446167755703525387", "1567637126568878080", "1578392535369596932"] # list of str
 # Admin id is like sender id. To check it, send a menfess from your admin account.
 # IF YOU WANT TO TEST THE CONFIG, REMEMBER THIS! USERS IN ADMIN_ID PASS ALL USER'S FILTERS, you should delete your id on Admin_id
 
@@ -20,16 +20,16 @@ Timezone = 7
 Notify_queue = True
 # bool, True: Send the menfess queue to sender
 # The first tweet in queue won't be notified to sender (the delay is very quick).
-Notify_queueMessage = "Menfess kamu berada pada urutan ke-{}, akan terkirim sekitar pukul {}.\nKirim '/cancel' untuk " \
-                      "membatalkan menfess sebelum terkirim"
+Notify_queueMessage = "Hi! Menfess kamu berada pada urutan ke-{}, akan terkirim sekitar pukul {}.\n\nKirim '/cancel' untuk " \
+                      "membatalkan menfess sebelum terkirim."
 # Please keep the "{}" format -> .format(queue, time)
 
 Notify_sent = True
 # bool, True: Send menfess tweet link to sender when menfess sent
-Notify_sentMessage = "Yeay! Menfess kamu telah terkirim! https://twitter.com/{}/status/"
+Notify_sentMessage = "Yeay! Menfess kamu telah berhasil terkirim! \nhttps://twitter.com/{}/status/"
 # Please keep the "{}" format -> .format(bot_username) + postid
 
-Notify_sentFail1 = "Maaf ada kesalahan pada sistem :( \ntolong screenshot & laporkan kepada admin"
+Notify_sentFail1 = "Maaf kak ada kesalahan pada sistem :( \nTolong screenshot & laporkan kepada admin yaa"
 # Used when error is happened in system
 
 Interval_perSender = False # bool
@@ -45,14 +45,14 @@ Delay_time = 24 # int, seconds
 
 # Welcome message to new followers
 Greet_newFollower = True
-Notif_newFollower = "Makasih yaa udah follow base ini :) \nJangan lupa baca peraturan base!"
+Notif_newFollower = "Hai kak! Makasih yaa udah follow base ini :) \nJangan lupa baca peraturan base!"
 
 Keyword_deleter = False # Trigger word deleter
 # bool, True: Delete keyword from menfess before uploaded
 
 # send notif to user that followed by bot
 Greet_followed = True
-Notif_followed = "Yeay! kamu udah difollow base ini. Jangan lupa baca peraturan sebelum mengirim menfess yaa!"
+Notif_followed = "Yeay! Kamu udah difollow base ini. Jangan lupa baca peraturan sebelum mengirim menfess yaa!"
 
 Minimum_lenMenfess = 0 # length of the menfess
 Maximum_lenMenfess = 1120
@@ -66,15 +66,15 @@ Notif_twitterUrl = "Kamu hanya bisa mengirim url yang berasal dari twitter :("
 
 Verify_beforeSent = True
 Verify_beforeSentData = {
-    'text'      : 'Baca dulu peraturan base di blabla. Kamu yakin mau mengirim menfess ini?',
+    'text'      : 'Hai kak! Sebelum menfess nya dikirim pastikan kamu udah mengikuti semua peraturan base ini ya!. \nKamu yakin mau mengirim menfess ini?',
     'options'   : [
         {
-            'label'         : 'Iya',
+            'label'         : '👍 Iya',
             'description'   : 'melanjutkan untuk mengirim menfess', # max 72 chars (include space)
             'metadata'      : 'exec|self._verif_menfess("accept", sender_id)'
         },
         {
-            'label'         : 'Tidak',
+            'label'         : '👎Tidak',
             'description'   : 'membatalkan untuk mengirim menfess', # max 72 chars (include space)
             'metadata'      : 'exec|self._verif_menfess("reject", sender_id)'
         }
@@ -85,12 +85,12 @@ Verify_beforeSentData = {
 Sender_requirements = True
 # bool, True: sender should passes the following requirements:   (admin pass this filter)
 Only_followed = True
-Notif_notFollowed = "Hmm, kamu belum difollow base ini. Jadi ga bisa ngirim menfess dehh :("
+Notif_notFollowed = "Hmmmm, maaf nih kak tapi kamu belum difollow base ini. Jadi ga bisa ngirim menfess dehh :("
 # Minimum_followers and Minimum_day is (automatically) required when Sender_requirements is True.
-Minimum_followers = 0 # int
+Minimum_followers = 1 # int
 # Minimum-account-created-at
-Minimum_day = 1 # e.g 100, it means sender account must be created at 100 days ago
-Notify_senderRequirements = f"Kamu harus punya {Minimum_followers} followers dan umur akun kamu harus \
+Minimum_day = 2 # e.g 100, it means sender account must be created at 100 days ago
+Notify_senderRequirements = f"Hai kak, Kamu harus punya {Minimum_followers} followers dan umur akun kamu harus \
 lebih dari {Minimum_day} hari biar bisa ngirim menfess :("
 
 Private_mediaTweet = False
@@ -104,8 +104,8 @@ Private_mediaTweet = False
 Watermark = True
 # bool, True: Add watermark text to menfess's photo
 Watermark_data = {
-    'image'     : 'twitter_autobase/watermark/photo.png', # bool (True: default image, False: no image) or image file path (str) 
-    'text'      : 'ARH', # if you won't to add text, fill it with empty string ''
+    'image'     : 'twitter_autobase/watermark/ARHP.png', # bool (True: default image, False: no image) or image file path (str) 
+    'text'      : '', # if you won't to add text, fill it with empty string ''
     'font'      : 'twitter_autobase/watermark/FreeMono.ttf', # font file path
     'textColor' : (100,0,0,1), # RGBA
     'textStroke': (0,225,225,1), # RGBA
@@ -133,7 +133,7 @@ Trigger_word = ["fess!", "blablabla!", "🌟"]
 Notify_wrongTrigger = {
     'user'      : True, # send notif to user
     'admin'     : False, # send wrong trigger menfess to admin
-    'message'   : "Trigger menfess tidak terdeteksi",
+    'message'   : "Maaf kak, Trigger menfess tidak terdeteksi, silahkan gunakan 🌟 atau liat di Bio base.",
 }
 
 Sensitive_word = "/sensitive"
@@ -142,7 +142,7 @@ Sensitive_word = "/sensitive"
 # And using this bot for 'adult' base is strictly prohibited.
 Blacklist_words = ['covid', 'blablabla'] 
 # hashtags and mentions will be changed to "#." and "@."
-Notify_blacklistWords = "di menfess kamu terdapat blacklist words, jangan lupa baca peraturan base yaa!"
+Notify_blacklistWords = "Hai! Maaf di menfess kamu terdapat blacklist words, jangan lupa baca peraturan base yaa!"
 Notify_blacklistWordsAdmin = False # Will be sent to admin
 
 # Please set Admin_cmd and User_cmd in lowercase
@@ -174,7 +174,7 @@ User_cmd = {
 # /delete and /unsend is not available for user when bot was just started and user id not in db_sent
 # /delete & db_sent are only available for one day (reset every midnight or heroku dyno cycling)
 Notif_DMCmdDelete = {
-    'succeed'   : 'Yeay! Menfess kamu sudah berhasil dihapus',
+    'succeed'   : 'Yeay! Menfess kamu sudah berhasil dihapus!',
     'failed'    : 'Duh! Menfess ini ngga bisa kamu hapus :('
 }
 # Notif_DMCmdDelete is only for user, '/unsend' using this notif too
